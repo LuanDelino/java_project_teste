@@ -8,9 +8,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.projetojava.demo.domain.Category;
+import com.projetojava.demo.domain.Cities;
+import com.projetojava.demo.domain.States;
 import com.projetojava.demo.domain.Product;
 import com.projetojava.demo.repositories.CategoryRepository;
+import com.projetojava.demo.repositories.CitiesRepository;
 import com.projetojava.demo.repositories.ProductRepository;
+import com.projetojava.demo.repositories.StatesRepository;
 
 @SpringBootApplication
 public class StartupApplication implements CommandLineRunner {
@@ -20,6 +24,12 @@ public class StartupApplication implements CommandLineRunner {
 
 	@Autowired
 	private ProductRepository _productRepository;
+
+	@Autowired
+	private CitiesRepository _citiesRepository;
+
+	@Autowired
+	private StatesRepository _statesRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(StartupApplication.class, args);
@@ -43,6 +53,20 @@ public class StartupApplication implements CommandLineRunner {
 
 		_categoryRepository.saveAll(Arrays.asList(cat1, cat2));
 		_productRepository.saveAll(Arrays.asList(p1, p2, p3));
+
+
+		States est1 = new States(null, "Minas Gerais");
+		States est2 = new States(null, "São Paulo");
+
+		Cities cid1 = new Cities(null, "Uberlandia", est1);
+		Cities cid2 = new Cities(null, "São Paulo", est2);
+		Cities cid3 = new Cities(null, "Campinas", est2);
+
+		est1.getCidades().addAll(Arrays.asList(cid1));
+		est2.getCidades().addAll(Arrays.asList(cid2, cid3));
+
+		_statesRepository.saveAll(Arrays.asList(est1, est2));
+		_citiesRepository.saveAll(Arrays.asList(cid1, cid2, cid3));
 	}
 
 }
