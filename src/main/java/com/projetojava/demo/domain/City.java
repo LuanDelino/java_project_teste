@@ -11,8 +11,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "cidade")
-public class Cities implements Serializable{
+@Table(name = "city")
+public class City implements Serializable{
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -22,11 +22,11 @@ public class Cities implements Serializable{
     
     @ManyToOne
     @JoinColumn(name = "estado_id")
-    private States estado;
+    private State estado;
 
-    public Cities(){}
+    public City(){}
 
-    public Cities(Integer id, String nome, States estado) {
+    public City(Integer id, String nome, State estado) {
         super();
         this.id = id;
         this.nome = nome;
@@ -46,11 +46,11 @@ public class Cities implements Serializable{
         this.nome = nome;
     }
 
-    public States getEstado() {
+    public State getEstado() {
         return estado;
     }
 
-    public void setEstado(States estado) {
+    public void setEstado(State estado) {
         this.estado = estado;
     }
 
@@ -70,7 +70,7 @@ public class Cities implements Serializable{
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Cities other = (Cities) obj;
+        City other = (City) obj;
         if (id == null) {
             if (other.id != null)
                 return false;

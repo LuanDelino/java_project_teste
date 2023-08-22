@@ -12,8 +12,8 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "estado")
-public class States implements Serializable{
+@Table(name = "state")
+public class State implements Serializable{
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -22,11 +22,11 @@ public class States implements Serializable{
     private String nome;
 
     @OneToMany(mappedBy = "estado")
-    private List<Cities> cidades = new ArrayList<>();
+    private List<City> cidades = new ArrayList<>();
 
-    public States(){}
+    public State(){}
 
-    public States(Integer id, String nome) {
+    public State(Integer id, String nome) {
         super();
         this.id = id;
         this.nome = nome;
@@ -48,11 +48,11 @@ public class States implements Serializable{
         this.nome = nome;
     }
 
-    public List<Cities> getCidades() {
+    public List<City> getCidades() {
         return cidades;
     }
 
-    public void setCidades(List<Cities> cidades) {
+    public void setCidades(List<City> cidades) {
         this.cidades = cidades;
     }
 
@@ -72,7 +72,7 @@ public class States implements Serializable{
             return false;
         if (getClass() != obj.getClass())
             return false;
-        States other = (States) obj;
+        State other = (State) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
